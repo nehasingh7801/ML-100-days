@@ -1,0 +1,15 @@
+for i in range(1,429):#there are 429 pages
+    response = requests.get('https://api.themoviedb.org/3/movie/top_rated?api_key=f3633f106f236f0cadc67f151f20d9e3&language=en-US&page={}'.format(i))
+    temp_df=pd.DataFrame(response.json()['results'])[['id','title','overview','release_date','popularity','vote_average','vote_count']]
+    #this is the inner dataframe
+    df.append(temp_df, ignore_index=True)
+    #append the inner dataframe extracted per loop to df 
+    #ignore index so that everytime data is extracted the indexing continues, 1-20 then 20-40... and not 1-20, 1-20, 1-20....
+
+
+
+
+for i in range(1,429):
+    response = requests.get('https://api.themoviedb.org/3/movie/top_rated?api_key=f3633f106f236f0cadc67f151f20d9e3&language=en-US&page={}'.format(i))
+    temp_df = pd.DataFrame(response.json()['results'])[['id','title','overview','release_date','popularity','vote_average','vote_count']]
+    df = df.append(temp_df,ignore_index=True)
